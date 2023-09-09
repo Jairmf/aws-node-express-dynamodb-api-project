@@ -1,0 +1,39 @@
+@baseUrl = https://pmhl5r734f.execute-api.us-east-1.amazonaws.com
+
+###
+GET {{baseUrl}}/users/3072cb68-455f-4642-9ba6-4d514434bae8 HTTP/1.1
+content-type: application/json
+###
+POST {{baseUrl}}/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "anio_nacimiento": "19 BBY",
+    "color_ojos": "Blue",
+    "peliculas": [
+        "https://swapi.py4e.com/api/films/2/",
+		"https://swapi.py4e.com/api/films/6/",
+		"https://swapi.py4e.com/api/films/3/",
+		"https://swapi.py4e.com/api/films/1/",
+		"https://swapi.py4e.com/api/films/7/"
+    ],
+    "genero": "Male",
+    "color_cabello": "Blond",
+    "talla": "172",
+    "planeta_origen": "https://swapi.py4e.com/api/planets/1/",
+    "peso": "77",
+    "nombre": "Luke Skywalker",
+    "color_piel": "Fair",
+    "especies": [
+        "https://swapi.py4e.com/api/species/1/"
+    ],
+    "naves": [
+        "https://swapi.py4e.com/api/starships/12/",
+		"https://swapi.py4e.com/api/starships/22/"
+    ],
+    "url": "https://swapi.py4e.com/api/people/1/",
+    "vehiculos": [
+        "https://swapi.py4e.com/api/vehicles/14/",
+		"https://swapi.py4e.com/api/vehicles/30/"
+    ]
+}
