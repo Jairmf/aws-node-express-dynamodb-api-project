@@ -1,0 +1,44 @@
+service: aws-node-express-dynamodb-api-project
+frameworkVersion: '3'
+
+custom:
+  peopleTableName: 'people-table-${sls:stage}'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [ PeopleTable, Arn ]
+  environment:
+    PEOPLE_TABLE: ${self:custom.peopleTableName}
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi: '*'
+
+resources:
+  Resources:
+    PeopleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: peopleId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: peopleId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.peopleTableName}
